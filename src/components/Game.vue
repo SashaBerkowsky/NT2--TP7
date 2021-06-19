@@ -18,7 +18,6 @@
 
     mounted () {
       this.restart()
-      this.$emit('restart', this.restart)
       this.$store.dispatch('setRestart', this.restart)
     },
     data () {
