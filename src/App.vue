@@ -1,28 +1,60 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="header" :style="{ background: headerColorVuex }">
+      <h1>
+        The Great <br />
+        <span id="colorDisplay">{{ pickedColorVuex }}</span>
+        <br />
+        Guessing Game
+      </h1>
+    </div>
+    <Navbar />
+    <Game />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from "./components/Navbar.vue";
+import Game from "./components/Game.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  mounted() {},
+  data() {
+    return {
+      pickedColor: "RGB",
+    };
+  },
+  methods: {},
+  computed: {
+    pickedColorVuex() {
+      return this.$store.state.pickedColor;
+    },
+    headerColorVuex() {
+      return this.$store.state.gane ? this.pickedColorVuex : "steelBlue";
+    },
+  },
   components: {
-    HelloWorld
-  }
-}
+    Navbar,
+    Game,
+  },
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: #232323;
+  margin: 0;
+  font-family: "Montserrat", "Avenir";
+}
+#header {
+  transition: all 0.3s;
+  text-transform: uppercase;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
+  color: white;
+}
+#colorDisplay {
+  font-size: 200%;
 }
 </style>
